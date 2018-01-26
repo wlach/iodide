@@ -154,6 +154,7 @@ class GenericCell extends React.Component {
   }
 
   render() {
+    console.log('heya');
     let cellSelected = this.props.cell.selected ? 'selected-cell ' : ''
     let editorMode = (
       (this.props.cell.selected && this.props.pageMode === 'edit')
