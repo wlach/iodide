@@ -262,7 +262,7 @@ function exportJsmdBundle(state) {
     APP_PATH_STRING: IODIDE_JS_PATH,
     CSS_PATH_STRING: IODIDE_CSS_PATH,
     APP_VERSION_STRING: IODIDE_VERSION,
-    EVAL_FRAME_PATH_STRING: IODIDE_EVAL_FRAME_PATH,
+    EVAL_FRAME_PATH: IODIDE_EVAL_FRAME_PATH,
     JSMD: stringifyStateToJsmd(state, new Date().toISOString()),
   })
 }
