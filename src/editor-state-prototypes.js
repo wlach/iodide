@@ -30,7 +30,7 @@ function newNotebook() {
 
 function getUrlParams() {
   const queryParams = queryString.parse(window.location.search);
-  const report = !!queryParams.report
+  const report = queryParams.viewMode === 'REPORT_VIEW'
   return { viewMode: report ? 'REPORT_VIEW' : 'EXPLORE_VIEW' }
 }
 

@@ -122,7 +122,7 @@ export function setViewMode(viewMode) {
     if (state.notebookId) {
       // if there is a notebook id, then persist the fact that this is a Report
       // in the url
-      const params = (viewMode === 'REPORT_VIEW') ? '?report=1' : ''
+      const params = (viewMode === 'REPORT_VIEW') ? '?viewMode=REPORT_VIEW' : ''
       window.history.replaceState({}, '', `/notebooks/${state.notebookId}/${params}`)
     }
     dispatch({
