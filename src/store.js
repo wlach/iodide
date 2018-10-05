@@ -5,7 +5,7 @@ import { createLogger } from 'redux-logger'
 
 import createValidatedReducer from './reducers/create-validated-reducer'
 import reducer from './reducers/reducer'
-import { getUserData, newNotebook, stateSchema } from './editor-state-prototypes'
+import { getUrlParams, getUserData, newNotebook, stateSchema } from './editor-state-prototypes'
 
 let enhancer
 let finalReducer
@@ -25,7 +25,11 @@ if (IODIDE_BUILD_MODE === 'production') {
     })),
   )
 }
-const store = createStore(finalReducer, Object.assign(newNotebook(), getUserData()), enhancer)
+const store = createStore(
+  finalReducer,
+  Object.assign(newNotebook(), getUrlParams(), getUserData()),
+  enhancer,
+)
 
 const { dispatch } = store
 
