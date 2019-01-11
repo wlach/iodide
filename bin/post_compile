@@ -8,6 +8,19 @@ set -euo pipefail
 # Uses the node binaries/packages installed by the nodejs buildpack previously.
 npm install && npm run build
 
+# See if we don't have a previous version of the pyodide assets in
+# CACHE_DIR
+PYODIDE_DIR=$CACHE_DIR/pyodide-$PYODIDE_VERSION
+echo "Checking for pyodide in $PYODIDE_DIR"
+if [ ! -d $PYODIDE_DIR ]; then
+   rm -rf $CACHE_DIR
+   mkdir -p $CACHE_DIR
+   ./bin/install_pyodide $CACHE_DIR/pyodide
+   python -m whitenoise.compress $PYODIDE_DIR
+fi
+echo "Copying over cached versions of the pyodide assets"
+cp -r $CACHE_DIR/pyodide-$PYODIDE_VERSION build
+
 # Generate gzipped versions of files that would benefit from compression, that
 # WhiteNoise can then serve in preference to the originals. This is required
 # since WhiteNoise's Django storage backend only gzips assets handled by
